@@ -2,12 +2,16 @@
 # -*- coding: utf-8 -*-
 from sys import exit
 
+
 class Engine(object):    
     
+    
     def __init__(self, scene_map):
+    	
         self.scene_map = scene_map
     
     def play(self):
+    	
         current_scene = self.scene_map.opening_scene()
         last_scene = self.scene_map.next_scene('the_end')
         
@@ -20,12 +24,14 @@ class Engine(object):
     
 class Scene(object):     
 
+
     def enter(self):
         print "not configured yet"
         exit(1)  
 
 	
 class Start(Scene):
+    
     
     print "Enter your name: "
     name = raw_input(" ")
@@ -35,9 +41,8 @@ class Start(Scene):
     age = int(raw_input())
     print "You're %r years old" % (age)
 
-    
     def enter(self):
-        
+    	
         if Start.age < 18:
             print "Sorry %s... You're too young to play this game." % (Start.name)
             return "the_end"
@@ -59,13 +64,19 @@ class Start(Scene):
         
 
 class The_end(Scene):
+	
+	
     def enter(self):
+    	
         print "you're dead"
         exit(1)
 
 
 class Corridor(Scene):
+	
+	
     def enter(self):
+    	
         print """Your're in the corridor. You're thinking 'hmm... how can I escape this f... house'
         You can see a main front door, it is metal and locked so there is no way to leave through it.
         You can also see 3 other doors open. There is a kitchen (1), bathroom (2) and living room (3).
@@ -87,8 +98,12 @@ class Corridor(Scene):
             print "That's not an answer. Try again."
             return "corridor"
 
+
 class Kitchen(Scene):
+	
+	
     def enter(self):
+    	
         print """
         
         Ok, so what can you see in the kitchen... there is a total mess but no window,
@@ -112,8 +127,7 @@ class Kitchen(Scene):
               
         
         """
-        
-        
+       
         print "How many legs do I have? (the spider starts to dance so it's difficult to count legs)"
          
         answ1 = int(raw_input())
@@ -139,12 +153,14 @@ class Kitchen(Scene):
         
         
         """ % (answ3)    
-       
-        
+     
         return "corridor"
 
+
 class Bathroom(Scene):
+	
     def enter(self):
+    	
         print "Ok, there is a shower so you can eventually jump into the sewage system. Do you want to do that?"
         jump = raw_input('')
         if jump == 'yes':
@@ -153,13 +169,18 @@ class Bathroom(Scene):
         else:
             return "corridor"
 
+
 class Living_room(Scene):
+	
+	
     def enter(self):
+    	
         print "living_room output"
         return "corridor"
             
         
 class Map(object):    
+	
 
     scenes = {
 	"start": Start(),
@@ -171,13 +192,16 @@ class Map(object):
 	}
     
     def __init__(self, start_scene):
+    	
         self.start_scene = start_scene
     
     def next_scene(self, scene_name):
+    	
         val = Map.scenes.get(scene_name)
         return val
     
     def opening_scene(self):
+    	
         return self.next_scene(self.start_scene)
    
 a_map = Map("start")
