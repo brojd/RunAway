@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from sys import exit
+from random import randint
 
 
 class Engine(object):    
@@ -167,6 +168,7 @@ class Bathroom(Scene):
             print "You get drowned in a sewage system."
             return "the_end"
         else:
+            print "There's nothing else to do so you go back to the corridor."
             return "corridor"
 
 
@@ -175,8 +177,35 @@ class Living_room(Scene):
 	
     def enter(self):
     	
-        print "living_room output"
-        return "corridor"
+        print """What do we have here? Bed, wardrobe...
+        oh! it's computer, excellent!!! It's open and turned on.
+        But you have to enter the password...
+        Oh there is a piece of paper with passowrd next to the computer!
+        It starts with "sth12" but there are 2 digits left that you have to guess.
+        Ok, let's try!"""
+        
+        first_part = "sth12"
+        second_part = str(randint(0, 9)) + str(randint(0, 9))
+        password = first_part + second_part
+        print password
+        guess = raw_input('')
+        
+        while password != guess:
+            print "The password is not correct. Do you want to try again?"
+            ans = raw_input('')
+            if ans == 'yes':
+                guess = raw_input('')
+            elif ans == 'no':
+                return "corridor"
+            else:
+                print "That's not an answer."
+        
+        print """
+            Excellent! You entered the correct password.
+            Now you can contact your wife via facebook and she will let you out.
+            Congratulations!"""
+        raw_input()
+        exit(1)
             
         
 class Map(object):    
