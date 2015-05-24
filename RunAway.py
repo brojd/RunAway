@@ -187,7 +187,6 @@ class Living_room(Scene):
         first_part = "sth12"
         second_part = str(randint(0, 9)) + str(randint(0, 9))
         password = first_part + second_part
-        print password
         guess = raw_input('')
         
         while password != guess:
