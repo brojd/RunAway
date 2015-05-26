@@ -231,8 +231,7 @@ class Map(object):
     def opening_scene(self):
     	
         return self.next_scene(self.start_scene)
-   
-   
+      
 a_map = Map("start")
 a_game = Engine(a_map)
 a_game.play()
